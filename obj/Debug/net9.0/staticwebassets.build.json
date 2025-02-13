@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "RTqvP93onPb9p9YwQ8+ABhKldcLPI28b/c1J+OgpCh0=",
+  "Source": "SymptomApi",
+  "BasePath": "_content/SymptomApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
