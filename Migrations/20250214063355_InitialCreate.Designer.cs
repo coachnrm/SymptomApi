@@ -12,7 +12,7 @@ using SymptomApi.Data;
 namespace SymptomApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250214041655_InitialCreate")]
+    [Migration("20250214063355_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -32,6 +32,9 @@ namespace SymptomApi.Migrations
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CommonCold")
+                        .HasColumnType("int");
 
                     b.Property<int>("Fever")
                         .HasColumnType("int");

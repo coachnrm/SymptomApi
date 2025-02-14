@@ -10,4 +10,5 @@ public class ColdSyndromeInsert
     public int Nose {get; set;}
     public int Neck {get; set;}
     public int Fever {get; set;}
+    public int CommonCold {get; set;}
 }

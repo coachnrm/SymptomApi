@@ -91,7 +91,7 @@ public class SymptomController : ControllerBase
             var sourceData = await (from o in _context.Opdscreens
                         join v in _context.VnStats on o.Vn equals v.Vn into joined
                         from v in joined.DefaultIfEmpty()
-                        where v.Pdx == "J00" && o.Vstdate == _date
+                        where o.Vstdate == _date && o.Symptom.Contains("ไข้")
                         select new 
                         {
                             o.Hn,
@@ -99,7 +99,7 @@ public class SymptomController : ControllerBase
                             o.Symptom,
                             v.Pdx
                         })
-                        .Take(100)
+                        .Take(200)
                         .ToListAsync();
 
             if (sourceData == null || !sourceData.Any())
@@ -115,6 +115,7 @@ public class SymptomController : ControllerBase
                 Nose = (item.Symptom.Contains("น้ำมูกไหล") || item.Symptom.Contains("คัดจมูก") || item.Symptom.Contains("แน่นจมูก")) ? 1 : 0,
                 Neck = (item.Symptom.Contains("เจ็บคอ") || item.Symptom.Contains("ไอ") || item.Symptom.Contains("แน่นจมูก")) ? 1 : 0,
                 Fever = item.Symptom.Contains("ไข้") ? 1 : 0,
+                CommonCold = (item.Pdx.Contains("J00") || item.Pdx.Contains("J029") || item.Pdx.Contains("J069")) ? 1 : 0,
             }).ToList();
 
             _db.ColdSyndromeInsert.AddRange(destinationData);

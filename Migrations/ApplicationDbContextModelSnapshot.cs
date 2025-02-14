@@ -30,6 +30,9 @@ namespace SymptomApi.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CommonCold")
+                        .HasColumnType("int");
+
                     b.Property<int>("Fever")
                         .HasColumnType("int");
 

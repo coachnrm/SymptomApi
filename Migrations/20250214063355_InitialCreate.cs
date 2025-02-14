@@ -25,7 +25,8 @@ namespace SymptomApi.Migrations
                     Head = table.Column<int>(type: "int", nullable: false),
                     Nose = table.Column<int>(type: "int", nullable: false),
                     Neck = table.Column<int>(type: "int", nullable: false),
-                    Fever = table.Column<int>(type: "int", nullable: false)
+                    Fever = table.Column<int>(type: "int", nullable: false),
+                    CommonCold = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
