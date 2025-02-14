@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SymptomApi.Data;
+using SymptomApi.Model2s;
 using SymptomApi.Models;
 
 namespace SymptomApi.Controllers;
@@ -11,9 +12,11 @@ namespace SymptomApi.Controllers;
 public class SymptomController : ControllerBase
 {
     private readonly ApplicationDbContext _db;
-    public SymptomController(ApplicationDbContext db)
+    private readonly HosXpDbContext _context;
+    public SymptomController(ApplicationDbContext db, HosXpDbContext context)
     {
         _db = db; 
+        _context = context; 
     } 
 
     [HttpGet]
@@ -64,6 +67,57 @@ public class SymptomController : ControllerBase
             }).ToList();
 
             _db.SyndromeInsert.AddRange(destinationData);
+            await _db.SaveChangesAsync();
+
+            // 3. Commit the transaction
+            await transaction.CommitAsync(); 
+
+            return Ok("Data transferred successfully.");
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> InsertColdData(DateOnly _date)
+    {
+        using var transaction = await _db.Database.BeginTransactionAsync(); 
+        try 
+        {
+            // 1. Get data from the source table
+            var sourceData = await (from o in _context.Opdscreens
+                        join v in _context.VnStats on o.Vn equals v.Vn into joined
+                        from v in joined.DefaultIfEmpty()
+                        where v.Pdx == "J00" && o.Vstdate == _date
+                        select new 
+                        {
+                            o.Hn,
+                            o.Vstdate,
+                            o.Symptom,
+                            v.Pdx
+                        })
+                        .Take(100)
+                        .ToListAsync();
+
+            if (sourceData == null || !sourceData.Any())
+            {
+                return NotFound("No data found in the source table.");
+            }
+
+            // 2. Insert data into the destination table
+            var destinationData = sourceData.Select(item => new ColdSyndromeInsert
+            {
+                VstDate = item.Vstdate,
+                Head = (item.Symptom.Contains("ปวดศีรษะ") || item.Symptom.Contains("ปวดหัว")) ? 1 : 0,
+                Nose = (item.Symptom.Contains("น้ำมูกไหล") || item.Symptom.Contains("คัดจมูก") || item.Symptom.Contains("แน่นจมูก")) ? 1 : 0,
+                Neck = (item.Symptom.Contains("เจ็บคอ") || item.Symptom.Contains("ไอ") || item.Symptom.Contains("แน่นจมูก")) ? 1 : 0,
+                Fever = item.Symptom.Contains("ไข้") ? 1 : 0,
+            }).ToList();
+
+            _db.ColdSyndromeInsert.AddRange(destinationData);
             await _db.SaveChangesAsync();
 
             // 3. Commit the transaction

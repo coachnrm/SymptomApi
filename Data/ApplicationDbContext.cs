@@ -12,4 +12,6 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Syndrome> Syndrome {get; set;}
     public DbSet<SyndromeInsert> SyndromeInsert {get; set; }
+    public DbSet<ColdSyndromeInsert> ColdSyndromeInsert {get; set;}
+
 }

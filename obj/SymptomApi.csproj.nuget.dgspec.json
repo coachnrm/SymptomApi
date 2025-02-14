@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\SymptomApi\\SymptomApi.csproj": {}
+    "D:\\SymptomApi\\SymptomApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\SymptomApi\\SymptomApi.csproj": {
+    "D:\\SymptomApi\\SymptomApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\SymptomApi\\SymptomApi.csproj",
+        "projectUniqueName": "D:\\SymptomApi\\SymptomApi.csproj",
         "projectName": "SymptomApi",
-        "projectPath": "C:\\Users\\User\\Desktop\\SymptomApi\\SymptomApi.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\SymptomApi\\obj\\",
+        "projectPath": "D:\\SymptomApi\\SymptomApi.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\SymptomApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -92,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
