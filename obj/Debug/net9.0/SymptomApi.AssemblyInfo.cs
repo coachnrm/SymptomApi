@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SymptomApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07d1f6f19b048e63194b018904381034b3d4660c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e824a54b7539eb473bff3bc8a8d0a65f1af38a82")]
 [assembly: System.Reflection.AssemblyProductAttribute("SymptomApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SymptomApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

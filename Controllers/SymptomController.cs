@@ -99,7 +99,7 @@ public class SymptomController : ControllerBase
                             o.Symptom,
                             v.Pdx
                         })
-                        .Take(200)
+                        .Take(1000)
                         .ToListAsync();
 
             if (sourceData == null || !sourceData.Any())
